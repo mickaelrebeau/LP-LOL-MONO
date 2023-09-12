@@ -11,14 +11,14 @@ class ServiceSendinBlue
 {
     public static function sendEmail($to, $id, $params)
     {
-        $config = Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+        $config = Configuration::getDefaultConfiguration()->setApiKey('api-key', 'API_KEY_HERE');
 
 $apiInstance = new TransactionalEmailsApi(
     new Client(),
     $config
 );
 $sendSmtpEmail = new SendSmtpEmail();
-$sendSmtpEmail['sender'] = array('name' => 'Lp-Lol', 'email' => 'johnb16@hotmail.fr');
+$sendSmtpEmail['sender'] = array('name' => 'Lp-Lol', 'email' => 'EMAIL_HERE');
 $sendSmtpEmail['to'] = array(
     $to
 );
