@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<header>
+		<nav class="navbar navbar-expand-lg px-5">
+			<h1 class="logo">LP_LOL</h1>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="navigation collapse navbar-collapse justify-content-end" id="navbarNav">
+				<menu class="navbar-nav links">
+					<li class="nav-item active p-1 mx-lg-2">
+						<a class="link nav-link text-white" href="{{ path('home')}}">Accueil</a>
+					</li>
+					<li class="nav-item active p-1 mx-lg-2">
+						<a class="link nav-link text-white" href="#">Profil</a>
+					</li>
+					<li class="nav-item active p-1 mx-lg-2">
+						<a class="link nav-link text-white" href="#">Groupes</a>
+					</li>
+					<li class="nav-item active p-1 mx-lg-2">
+						<a class="link nav-link text-white" href="#">Sécurité</a>
+					</li>
+					<li class="nav-item active p-1 mx-lg-2">
+						<a class="nav-link text-white" href="#">QRCode</a>
+					</li>
+					<li class="nav-item active p-1 mx-lg-2">
+						<a class="nav-link text-white" href="#">Demandes</a>
+					</li>
+					<li class="nav-item active p-1 mx-lg-2">
+						<a class="nav-link text-white" href="#">Historique</a>
+					</li>
+					<li class="nav-item active p-1 mx-lg-5">
+						<a class="nav-link text-white" href="{{ path('app_logout')}}">Déconnexion</a>
+					</li>
+				</menu>
+			</div>
+		</nav>
+	</header>
+
+	<main class="container my-5">
+		<section class="notifications text-white px-5 py-2 rounded-4">
+			<h2>Notifications</h2>
+		</section>
+
+		<section class="mt-5">
+			<div class="d-flex my-4 mt-5">
+				<h2 class="me-2 me-lg-5">Contacts</h2>
+				<form class="d-flex w-100 search-form rounded-5" name="search_form" method="get">
+					<button class="search me-2 rounded-5" type="submit">
+						<i class="fa-solid fa-magnifying-glass" style="color: #262626"></i>
+					</button>
+					<div id="search_form" class="w-100 rounded-5">
+						<input class="form-control w-100 me-1 rounded-5 py-2 px-3" type="search" id="search_form_query" name="search_form[query]" required="required"
+						placeholder="Pseudo, email ou numéro de téléphone..." aria-label="Search" spellcheck="false"/>
+					</div>
+				</form>
+			</div>
+			<div>
+				{% if results is not empty %}
+					<div class="search-results">
+						<h2>Résultats de recherche</h2>
+
+						{% for user in results %}
+							<div class="search-result">
+								<h3>{{ user.username }}</h3>
+							</div>
+						{% endfor %}
+					</div>
+					{% else %}
+					<div class="row row-cols-4 justify-content-center">
+						<p>Vos résultats de recherche apparaîtront ici.</p>
+					</div>
+				{% endif %}
+			</div>
+		</section>
+
+		<section class="contacts py-3 px-5 rounded-4">
+			<div class="row row-cols-4 justify-content-center">
+			<div class="contact p-3 p-lg-4 rounded-4 m-3" style="width: 13rem;">
+				<h2 class="fs-2">Paul</h2>
+				<div class="mt-4">
+				<button class="view p-2 rounded-3 shadow fw-semibold">
+					<a href="#">Voir</a>
+				</button>
+				<button class="delete ms-5 p-2 rounded-3 shadow fw-semibold">
+					Supp
+				</button>
+				</div>
+			</div>
+			{% if users is not empty %}
+                {% for user in users %}
+                    <div class="contact p-3 p-lg-4 rounded-4 m-3" style="width: 13rem;">
+                        <h2 class="fs-2">{{ user.username}}</h2>
+                        <div class="mt-4">
+                            <button class="view p-2 rounded-3 shadow fw-semibold">
+                                Voir
+                            </button>
+                            <button class="delete ms-5 p-2 rounded-3 shadow fw-semibold">
+                                Supp
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+				{% else %}
+                    <p class="text-white text-center fs-3 fw-semibold w-100">Vous n'avez pas encore de contacts.</p>
+			{% endif %}
+			</div>
+		</section>
+	</main>
+
+	<script src="https://kit.fontawesome.com/22e3f50edc.js" crossorigin="anonymous"></script>
+
+{% endblock %}

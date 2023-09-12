@@ -1,0 +1,83 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    LP-LOL - Edit profil
+{% endblock %}
+
+{% block body %}
+    <h2 class='text-center mt-4' >Edition profil</h2>
+    <div class='text-black d-flex flex-column justify-content-center align-items-center mt-5'>
+        <form class='w-50 d-flex flex-column bg-primary p-5' action="{{ path('app_profil_edit', {'id': user.id}) }}" method="POST">
+            
+            <label for="firstname">Firstname</label>
+            <input class='mb-2' name="firstname" maxlength = "18" minlength="3" type="text" value={{ user.firstname ? user.firstname : '' }}>
+            
+
+            <label value="lastname"  for="lastname">Lastname</label>
+            <input class='mb-2' name="lastname" maxlength = "18" minlength="3" type="text" value={{ user.lastname ? user.lastname : '' }}>
+
+            <label value="pseudo"  for="pseudo">Pseudo</label>
+            <input class='mb-2' name="pseudo" maxlength = "18" minlength="3" type="text" value={{ user.pseudo ? user.pseudo : '' }}>
+            {# {% if err == "pseudo" %}
+            <p>erreur</p>
+            {% endif %} #}
+            
+
+            <label value="digicode"  for="digicode">Digicode</label>
+            <input class='mb-2' name="digicode" maxlength = "18" minlength="2" type="text" value={{ user.digicode ? user.digicode : '' }}>
+            
+            <label value="fix_number"  for="fix_number">Numero de fixe</label>
+            <input class='mb-2' name="fix_number" maxlength = "12" minlength="11"type="number" value={{ user.fix_number ? user.fix_number : '' }}>
+
+            <label value="address_1"  for="address_1">Adresse 1</label>
+            <input class='mb-2' name="address_1" type="text" minlength="2" value={{ user.address_1 ? user.address_1 :'' }}>
+
+            <label value="address_2"  for="address_2">Adresse 2</label>
+            <input class='mb-2' name="address_2" type="text" minlength="2" value={{ user.address_2 ? user.address_2 : '' }}>
+
+            <label value="address_3"  for="address_3">Adresse 3</label>
+            <input class='mb-2' name="address_3" type="text" minlength="2" value={{ user.address_3 ? user.address_3 : '' }}>
+
+            <div class='d-flex justify-content-around mt-4'>
+                <div class='d-flex flex-column'>
+                    <h2 class="fs-5">Carte Bancaire 1</h2>
+                    {% if err == "cb_1leng" %}
+                    <p>erreur</p>
+                    {% endif %}
+                    
+                    
+                    <label value="cb_1" for="cb_1">Nom sur la carte</label>
+                    <input type="text" class='mb-2' name='cb_1[name]' value="{{ user.cb_1 ? user.cb_1[0] : '' }}">
+
+                    <label value="cb_1"  for="cb_1">16 Chiffre de la carte</label>
+                    <input type="text" class='mb-2' name='cb_1[number]' length="16" value="{{ user.cb_1 ? user.cb_1[1] : '' }}">
+
+                    <label value="cb_1"  for="cb_1">Date d'expiration</label>
+                    <input type="text" class='mb-2' name='cb_1[expiration]' value="{{ user.cb_1 ? user.cb_1[2] : '' }}">
+
+                    <label value="cb_1"  for="cb_1">3 Chiffres de sécurité</label>
+                    <input type="text" class='mb-2' name='cb_1[cvc]' value="{{ user.cb_1 ? user.cb_1[3] : '' }}">
+                </div>
+
+                <div class='d-flex flex-column'>
+                    <h2 class="fs-5">Carte Bancaire 2</h2>
+
+                    <label value="cb_2"  for="cb_2">Nom sur la carte</label>
+                    <input type="text" class='mb-2' name='cb_2[name]' value="{{ user.cb_2 ? user.cb_2[0] : '' }}">
+
+                    <label value="cb_2"  for="cb_2">16 Chiffre de la carte</label>
+                    <input type="text" class='mb-2' name='cb_2[number]' length="16" value="{{ user.cb_2 ? user.cb_2[1] : '' }}">
+
+                    <label value="cb_2"  for="cb_2">Date d'expiration</label>
+                    <input type="text" class='mb-2' name="cb_2[expiration]" value="{{ user.cb_2 ? user.cb_2[2] : '' }}">
+
+                    <label value="cb_2"  for="cb_2">3 Chiffres de sécurité</label>
+                    <input type="text" class='mb-2' name="cb_2[cvc]" value="{{ user.cb_2 ? user.cb_2[3] : '' }}">
+                </div>
+            </div>
+            
+            <button class='btn btn-secondary' type="submit">Valider</button>
+        </form>
+    </div>
+
+{% endblock %}

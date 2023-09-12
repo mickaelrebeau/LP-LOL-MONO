@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Créer un nouveau groupe {% endblock %}
+
+{% block body %}
+
+<style>
+    h1 {
+        text-align:center;
+    }
+
+    #group_submit {
+        background-color : #36827F;
+        color: #F8F9FA;
+    }
+
+    .green {
+        background-color : #C2EFB3;
+        color : #262626;
+    }
+
+    .form-check-input {
+        scale: 1.4;
+    }
+
+
+        
+
+</style>
+
+<div class="container-fluid mt-4 p-4">
+
+    <h1 class="mb-3"> Créer un nouveau groupe </h1>
+
+    <div class="row">
+
+        {{ form_start (form) }}
+
+            <div class="col-10 mx-auto p-4 green border border-secondary-subtle rounded shadow">
+
+                <div class="row"> 
+                    {{ form_errors(form.name) }}
+                    <div class="col-xl-2 col-md-3 mt-2"> {{form_label (form.name)}} </div>
+                    <div class="col-xl-7 col-md-6"> {{form_widget (form.name)}} </div>
+                    <div class="col-md-3 d-flex align-items-end my-2"> {{form_row (form.is_default)}} </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                      <fieldset class="row">
+                         <legend>Veuillez sélectionner les données dont ce groupe a accès :</legend>
+                         {# {% for data in dataUserDefault %}
+                                <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[{{data}}]" value="{{data}}" id="{{data}}" checked>
+                            <label class="form-check-label" for="{{data}}"> {{form_label(form.data)}}</label>
+                        </div>
+                         {% endfor %} #}
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[firstname]" value="Prénom" id="firstname" checked>
+                            <label class="form-check-label" for="firsname"> Prénom </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[lastname]" value="Nom" id="lastname" checked>
+                            <label class="form-check-label" for="lastname"> Nom </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[pseudo]" value="Pseudo" id="pseudo" checked>
+                            <label class="form-check-label" for="pseudo"> Pseudo </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                    <input class="form-check-input" type="checkbox" name="data_sharing[email]" value="Email" id="email">
+                            <label class="form-check-label" for="email"> Email </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[phoneNumber]" value="Numéro de téléphone portable" id="phoneNumber">
+                            <label class="form-check-label" for="phoneNumber"> Numéro de téléphone (portable) </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[fixNumber]" value="Téléphone fixe" id="fixNumber">
+                            <label class="form-check-label" for="fixNumber"> Téléphone fixe </label>
+                        </div>
+                         <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[address1]" value="Adresse 1" id="address1">
+                            <label class="form-check-label" for="address1"> Adresse 1 </label>
+                        </div>
+                         <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[address2]" value="Adresse 2" id="address2">
+                            <label class="form-check-label" for="address2"> Adresse 2 </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[address3]" value="Adresse 3" id="address3">
+                            <label class="form-check-label" for="address3"> Adresse 3 </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[digicode]" value="Digicode" id="digicode">
+                            <label class="form-check-label" for="digicode"> Digicode </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[cb1]" value="CB1" id="cb1">
+                            <label class="form-check-label" for="cb1"> CB 1 </label>
+                        </div>
+                        <div class="form-check col-md-4 my-2">
+                            <input class="form-check-input" type="checkbox" name="data_sharing[cb2]" value="CB2" id="cb2">
+                            <label class="form-check-label" for="cb2"> CB 2 </label>
+                        </div>
+                      </fieldset> 
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row mb-3">
+                            <label for="expiration_date" class="form-label col-xl-3 mt-2">Date d'expiration du groupe :</label>
+                            <div id="expiration_date" class="input-append date col-xl-6 mb-3">
+                                {{ form_widget(form.expiration_date, {attr: { 
+                                    'data-format': "dd/MM/yyyy" },
+                                }) }}
+                                <span class="add-on"> 
+                                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+
+                <fieldset class="row">
+                    <legend>Veuillez sélectionner vos contacts à affecter à ce groupe :</legend>
+                    {% for contact in contacts %}
+                            <div class="form-check col-md-3 my-2">
+                                <input class="form-check-input" type="checkbox" name="contacts[{{contact.id}}]" value="{{contact.id}}" id="{{contact.id}}">
+                                <label class="form-check-label" for="{{contact.id}}">
+                                    {% if contact.pseudo is null %}
+                                        {{contact.firstname}} {{contact.lastname}}
+                                    {% else %}
+                                        {{contact.pseudo}}
+                                    {% endif %}
+                                </label>
+                            </div>
+                        
+                    {% endfor %}
+                </fieldset>
+               
+
+                <div class="row mt-3">
+                    {{form_row (form.submit)}} 
+                </div>
+
+                
+
+                {{ form_widget (form) }}
+
+            </div>
+        {{ form_end (form) }}
+    </div>
+</div>
+{% endblock %}

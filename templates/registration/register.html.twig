@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    LP-LOL - Inscription
+{% endblock %}
+
+{% block body %}
+    <div class='text-black vh-100 d-flex flex-column justify-content-center align-items-center'>
+        
+        <div class='container w-50 bg-primary d-flex p-0 rounded-top ' >
+            <div class='bg-primary w-50 m-0'>
+                <h2 class='p-3 fs-4 fw-bold m-0 text-center '>Inscription</h2>
+            </div>
+            <div class='bg-secondary w-50 m-0 rounded-top-right'>
+                <h2 class='text-white p-3 fs-4 fw-bold text-center'>Connexion</h2>
+            </div>
+        </div>
+        <div class='container bg-primary h-50 p-5 w-50 fw-bold rounded-bottom'>
+    {{ form(form) }}
+        <div>
+    </div>
+
+{% endblock %}

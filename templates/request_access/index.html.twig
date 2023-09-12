@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RequestAccessController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .request {
+        background-color: #C2EFB3;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+    .name {
+        text-align: center;
+        padding: 5px;
+    }
+    .info {
+        padding: 5px
+        text-align: center;
+        color: grey;
+    }
+    .boutton{
+        text-align: right;
+        text-decoration: none;
+        color: white;
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    .boutton:hover{
+        border-color: white;
+        color:white;
+    }
+    .bts{
+        text-align: right;
+    }
+    .rd{
+        background-color: #FD7979;
+        margin-right: 20px;
+        margin-left: 10px;
+        border: 2px solid #FD7979;
+    }
+    .bl{
+        background-color: #36827F;
+        border: 2px solid #36827F;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Historique des demandes</h1>
+    {% for user in users %}
+        <div class="request">
+            <h4 class="name">{{ user.firstname}} {{user.lastname}}</h4>
+            {% if user.status %}
+            
+            <p class="info">Vous partager vos données avec cette utilisateur</p>
+            <div class="bts">
+             <a class='boutton rd' href="{{ path('app_request_access_retired',{'id': me, 'idUser': user.id})}}">Retirer des contacts</a>
+            </div>
+            
+
+            {% else %}
+                {% if user.isRefused %}
+                
+                <p class="info">Vous avez refusé la demande de partage de données</p>
+                <div class="bts">
+                <a class="boutton rd" href="{{ path('app_request_access_revoked',{'id': me, 'idUser': user.id})}}">Révoquer</a>
+                </div>
+                
+
+                {% else %}
+
+                   <p class="info">En attente de votre réponse pour partager vos données</p>
+                   <div class="bts">
+                    <a class="boutton bl" href="{{ path('app_request_access_accept',{'id': me, 'idUser': user.id})}}">Accepter</a> 
+                    <a class="boutton rd" href="{{ path('app_request_access_deny',{'id': me, 'idUser': user.id})}}">Refuser</a>
+                   </div>
+                    
+                
+                {% endif %}
+                
+                
+            
+            {% endif %}
+            
+        </div>        
+    {% endfor %}
+{% endblock %}

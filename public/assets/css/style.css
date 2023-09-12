@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --tea-green: #C2EFB3;
+    --teal: #36827F;
+    --serial-black: #262626;
+    --white: #F8F9FA;
+    --red: #FD7979;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--white);
+    font-size: 62.2%;
+}
+
+header nav {
+    background-color: var(--teal);
+}
+
+.link:hover {
+    color: #C2EFB3;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+menu {
+    list-style: none;
+    display: flex;
+}
+
+.notifications,
+.contacts {
+    background-color: var(--teal);
+}
+
+.search-form {
+    border: 4px solid var(--teal);
+}
+
+.search {
+    padding: 0.5em 1em;
+    border: none;
+    background-color: var(--tea-green);
+}
+
+.contact {
+    background-color: var(--white);
+}
+
+.view {
+    background-color: var(--tea-green);
+}
+
+.delete {
+    background-color: var(--red);
+}
+
+.delete,
+.view {
+    border: none;
+    color: var(--serial-black);
+}
+
+footer {
+    background-color: var(--tea-green);
+}
+
+.download {
+    background-color: var(--tea-green);
+    border: none;
+}

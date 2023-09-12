@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vérification de votre email!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper {
+        background: #C2EFB3; 
+        padding: 15px;
+        width: 400px;
+        margin: 50px auto;
+        border-radius: 12px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        text-align: center; }
+        form{
+            padding: 5px;
+            margin-top: 20px;
+        }
+        form div {
+            margin-bottom: 10px;
+        }
+        input[type=text] {
+            border-radius: 8px;
+            border: none;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        button{
+            padding: 10px;
+            color: white;
+            background: #36827F;
+            border: 2px solid #36827F;
+            border-radius: 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover{
+            cursor: pointer;
+            border-color: white;
+        }
+        .err{
+            color: red;
+        }
+        .new-otp{
+            text-decoration: none;
+            padding: 10px;
+            color: white;
+            background: #36827F;
+            border: 2px solid #36827F;
+            border-radius: 12px;
+        }
+        .new-otp:hover{
+            cursor: pointer;
+            border-color: white;
+        }
+</style>
+
+<div class="example-wrapper">
+     {{ form_start(form) }}
+    {{ form_end(form) }}
+    
+    {% if res is same as(2) %}
+    
+        <p class=err>Code incorrecte !</p>
+
+    {% endif %}
+    <a class="new-otp href="{{ path('app_token_new_otp', { 'id': 1, 'token': 1234 }) }}">Générer un nouveau Code</a>
+    
+    
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GroupUserController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { 
+        margin: 1em auto; 
+        max-width: 800px; 
+        width: 95%; font: 
+        18px/1.5 sans-serif;
+        background-color: #C2EFB3;
+        padding: 10px;
+        border-radius: 12px;
+        }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    #group_user_envoyer {
+        background-color: #36827F;
+        border: none;
+    }
+</style>
+
+<div class="example-wrapper">
+
+    <h2>Ajout de données supplémentaire à {{guy.firstname}} {{guy.lastname}}</h2>
+
+    {{ form_start(form) }}
+        <label for="group">Choisissez le groupe</label>
+        <select name="group" id='group'>
+            {% for groupUser in groupsUser %}
+                <option value={{ groupUser.id}}>{{ groupUser.name}}</option>
+            {% endfor %}
+        </select>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="data_sharing[firstname]" value="firstname" id="firstname">
+            <label class="form-check-label" for="firsname"> Prénom </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="data_sharing[lastname]" value="lastname" id="lastname">
+            <label class="form-check-label" for="lastname"> Nom de famille </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="data_sharing[pseudo]" value="pseudo" id="pseudo">
+            <label class="form-check-label" for="pseudo"> Pseudo </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="data_sharing[email]" value="email" id="email">
+            <label class="form-check-label" for="email"> Email </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="data_sharing[phoneNumber]" value="phoneNumber" id="phoneNumber">
+            <label class="form-check-label" for="phoneNumber"> Numéro de téléphone (portable) </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="data_sharing[fixNumber]" value="fixNumber" id="fixNumber">
+            <label class="form-check-label" for="fixNumber"> Téléphone fixe </label>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

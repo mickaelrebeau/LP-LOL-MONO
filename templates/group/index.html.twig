@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des groupes{% endblock %}
+
+{% block body %}
+
+
+<div class="container-fluid" >
+    <h1>Liste des groupes : </h1>
+
+    {# read and display several types of flash messages #}
+        {% for label, messages in app.flashes(['success', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert flash-{{ label }} alert-{{label}}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th> Nom </th>
+                <th> Id </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in group %}
+            <tr>
+                <td> {{group.name}} </td>
+                <td> {{group.id}} </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
+{% endblock %}

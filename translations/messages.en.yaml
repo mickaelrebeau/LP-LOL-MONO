@@ -1,0 +1,13 @@
+datas:
+  firstname: firstname
+  lastname: lastname
+  pseudo: pseudo
+  email: email
+  phoneNumber: phoneNumber
+  fixNumber: fixNumber
+  digicode: digicode
+  address1: address1
+  address2: address2
+  address3: address3
+  cb1: cb1
+  cb2: cb2

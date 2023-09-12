@@ -1,0 +1,204 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <header>
+      <nav class="navbar navbar-expand-lg px-5">
+        <h1 class="logo">LP_LOL</h1>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="navigation collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <menu class="navbar-nav links">
+            <li class="nav-item active p-1 mx-lg-2">
+              <a class="link nav-link text-white" href="{{ path('home')}}">Accueil</a>
+            </li>
+            <li class="nav-item active p-1 mx-lg-2">
+              <a class="link nav-link text-white" href="#">Profil</a>
+            </li>
+            <li class="nav-item active p-1 mx-lg-2">
+              <a class="link nav-link text-white" href="#">Groupes</a>
+            </li>
+            <li class="nav-item active p-1 mx-lg-2">
+              <a class="link nav-link text-white" href="#">Sécurité</a>
+            </li>
+            <li class="nav-item active p-1 mx-lg-2">
+              <a class="nav-link text-white" href="#">QRCode</a>
+            </li>
+            <li class="nav-item active p-1 mx-lg-2">
+              <a class="nav-link text-white" href="#">Demandes</a>
+            </li>
+            <li class="nav-item active p-1 mx-lg-2">
+              <a class="nav-link text-white" href="#">Historique</a>
+            </li>
+            <li class="nav-item active p-1 mx-lg-5">
+              <a class="nav-link text-white" href="#">Déconnexion</a>
+            </li>
+          </menu>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container my-5 mx-1 mx-lg-5 mx-auto px-lg-5 px-2">
+      <section class="mb-5">
+        <h2 class="text-center">Paul</h2>
+      </section>
+
+      <section class="contacts p-3 my-2 my-lg-4 rounded-4">
+        <div class="d-flex align-items-center justify-content-between">
+          <h2 class="mb-3 text-white">Données partagées</h2>
+          <p class="text-white m-0">Partager des données supplémentaires</p>
+        </div>
+        <div class="contact p-2 rounded-4 shadow mt-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Contenu</th>
+                <th>Temporalité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Adresse 1</th>
+                <td>1 Rue Du Test</td>
+                <td>Infini</td>
+              </tr>
+            </tbody>
+          </table>
+        {% if contact.dataSharing is not empty %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Contenu</th>
+                        <th>Temporalité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for data in contact.dataSharing %}
+                    <tr>
+                        <th>{{ data.name }}</th>
+                        <td>{{ data.content }}</td>
+                        <td>{{ data.temporalite }}</td>
+                    </tr>
+                {% endfor %}
+                {% else %}
+                <th>
+                  <p class="fw-semibold">Vous ne lui partagez aucune donnée.</p>
+                </th>
+                </tbody>
+            </table>
+        {% endif %}
+        </div>
+      </section>
+
+      <section class="contacts p-3 my-4 rounded-4">
+        <div class="d-flex align-items-center justify-content-between">
+          <h2 class="text-white">Groupes</h2>
+          <p class="text-white m-0">Ajouter un groupe</p>
+        </div>
+        <div class="contact p-2 rounded-4 shadow mt-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom du groupe</th>
+                <th>Temporalité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Famille</th>
+                <td>Infini</td>
+              </tr>
+            </tbody>
+          </table>
+          {% if contact.groups is not empty %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nom du groupe</th>
+                  <th>Temporalité</th>
+                </tr>
+              </thead>
+              {% for group in contact.groups %}
+              <tbody>
+                <tr>
+                  <th>{{ group.name }}</th>
+                  <td>{{ group.temporalite }}</td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="contacts p-3 my-4 rounded-4">
+        <h2 class="text-white">Données du contact</h2>
+        <div class="contact p-2 rounded-4 shadow mt-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Contenu</th>
+                <th>Temporalité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>CB 1</th>
+                <td>
+                  carte-bancaire.jpg
+                  <button class="download ms-2 rounded-3 py-1 px-2 fw-semibold">télécharger</button>
+                </td>
+                <td>1 hours</td>
+              </tr>
+            </tbody>
+          </table>
+        {% if user is not empty %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Contenu</th>
+                        <th>Temporalité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for data in user.data_sharing %}
+                    <tr>
+                        <th>{{ data.name }}</th>
+                        <td>{{ data.content }}</td>
+                        <td>{{ data.temporalite }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <th>
+                  <p class="fw-semibold">Ce contact ne vous partage aucune donnée.</p>
+                </th>
+        {% endif %}
+        </div>
+      </section>
+    </main>
+
+    <script
+      src="https://kit.fontawesome.com/22e3f50edc.js"
+      crossorigin="anonymous"
+    ></script>
+    
+{% endblock %}
